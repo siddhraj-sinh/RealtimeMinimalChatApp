@@ -1,0 +1,43 @@
+<div class="background">
+    <div class="card">
+      <h2>Register</h2>
+      <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
+  
+        <input type="text" placeholder="Full Name" name="name" id="name" formControlName="name"
+          [ngClass]="{'error': getControl('name')?.errors && getControl('name')?.touched}">
+       
+          <span style="color: red;"
+            *ngIf="signupForm.get('name')?.errors?.['required'] && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+            Name is required.
+          </span>
+        
+  
+        <input type="text" placeholder="Email" name="email" id="email" formControlName="email"
+          [ngClass]="{'error': getControl('email')?.errors && getControl('email')?.touched}">
+      
+          <span style="color: red;"
+            *ngIf="signupForm.get('email')?.errors?.['required'] && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+            Email is required.
+          </span>
+        <span *ngIf="getControl('email')?.errors?.['email']" style="color: red;">Please enter a valid email address.</span>
+  
+       
+  
+        <input type="password" placeholder="Password" name="password" id="password" formControlName="password"
+          [ngClass]="{'error': getControl('password')?.errors && getControl('password')?.touched}">
+      
+          <span style="color: red;"
+            *ngIf="signupForm.get('password')?.errors?.['required'] && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+            Password is required.
+          </span>
+       
+  
+        <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        <div class="signin-link">
+          Already have an account? <a routerLink="/login"><b>Sign In</b></a>
+        </div>
+  
+      </form>
+  
+    </div>
+  </div>

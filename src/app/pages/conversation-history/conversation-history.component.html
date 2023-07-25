@@ -1,0 +1,62 @@
+<div class="bg">
+  <nav class="navbar" style="background-color: #047BD5; height: 86px;">
+    <div class="container-fluid" style="justify-content: start;">
+      <a class="navbar-brand">
+        <div class="profile">
+          <div class="user-image">
+            <span>{{ currentReciever.name.charAt(0) }}</span>
+          </div>
+        </div>
+
+      </a>
+      <strong style="color: white;">{{currentReciever.name}}</strong>
+    </div>
+
+
+    <!--Chat interface-->
+
+  </nav>
+  <div class="chat-container">
+    <div class="chat-messages">
+      <div style=" padding: 8px;
+          border-radius: 8px;
+          max-width: 80%;
+          margin: 4px 0; cursor: pointer; display: flex;" [ngClass]="{
+              'chat-message outgoing': message.senderId === currentUserId,
+              'chat-message incoming': message.senderId !== currentUserId
+            }" *ngFor="let message of messages" (contextmenu)="onContextMenu($event, message)">
+        <span class="message-content" *ngIf="!message.editMode && !message.deleteMode">{{ message.content }}</span>
+        <div *ngIf="message.isEvent && !message.editMode && !message.deleteMode" class="editor-actions">
+
+          <button class="edit-button" (click)="onEditMessage(message)"><i class="fa fa-pencil-square-o"
+              aria-hidden="true"></i></button>
+          <button class="delete-button" (click)="onDeleteMessage(message)"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+
+
+        </div>
+        <div class="message-editor-container" *ngIf="message.editMode && !message.deleteMode">
+          <input type="text" class="message-editor" [(ngModel)]="message.editedContent">
+          <div class="editor-actions">
+            <span class="accept-icon" (click)="onAcceptEdit(message)">&#10003;</span>
+            <span class="decline-icon" (click)="onDeclineEdit(message)">&#10005;</span>
+          </div>
+        </div>
+        <div class="message-editor-container" *ngIf="message.deleteMode && !message.editMode">
+          <span>Are you sure want to delete this message ?</span>
+          <div class="editor-actions">
+            <span class="accept-icon" (click)="onAcceptDelete(message)">&#10003;</span>
+            <span class="decline-icon" (click)="onDeclineDelete(message)">&#10005;</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="chat-input">
+      <input type="text" placeholder="Type your message..." [(ngModel)]="messageContent" />
+      <button class="send-button" (click)="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>

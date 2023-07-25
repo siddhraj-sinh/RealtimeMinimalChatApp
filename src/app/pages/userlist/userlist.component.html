@@ -1,0 +1,26 @@
+<div class="sidebar">
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+        <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+            <img src="../../../assets/app-logo.svg" width="50" height="50" />
+            <span class="fs-5 fw-semibold">Minimal Chat</span>
+        </a>
+        <div *ngFor="let user of Users" class="list-group list-group-flush border-bottom scrollarea">
+            <!-- active -->
+            <a class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" (click)="onUserClick(user)">
+                <div class="d-flex w-100 align-items-center">
+                    <div class="profile">
+                        <div class="user-image">
+                          <span>{{ user.name.charAt(0) }}</span>
+                        </div>
+                        </div>
+                        <div class="row">
+                    <strong class="mb-1">{{user.name}}</strong>
+                    
+                    <small>{{user.email}}</small>
+                  </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="background">
+    <div class="card">
+      <h2>Welcome !</h2>
+      <form [formGroup]="signinForm" (ngSubmit)="signInUser()">
+        
+        
+         
+      
+        <input type="email" placeholder="Email" class="form-control" formControlName="email" [ngClass]="{'error': getControl('email')?.errors && getControl('email')?.touched}">
+        <span *ngIf="getControl('email')?.errors?.['required'] && getControl('email')?.touched" style="color: red;">Email is required.</span>
+          <span *ngIf="getControl('email')?.errors?.['email']" style="color: red;">Please enter a valid email address.</span>
+          
+      <input type="password" placeholder="Password" name="password" formControlName="password" [ngClass]="{'error': getControl('password')?.errors && getControl('password')?.touched}">
+      <span *ngIf="getControl('password')?.errors && getControl('password')?.touched" style="color: red;">Password is required.</span>
+      
+      <button type="submit" [disabled]="signinForm.invalid">Sign In</button>
+      <div class="signup-link">
+        Don't have an account? <a routerLink="/register"><b>Sign Up </b></a>
+        </div>
+    </form>
+    </div>
+    </div>

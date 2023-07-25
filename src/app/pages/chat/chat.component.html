@@ -1,0 +1,38 @@
+<div class="sidebar border-end">
+  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+      <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+          <img src="../../../assets/app-logo.svg" style="cursor: pointer;" width="50" height="50" />
+          <span class="fs-5 fw-semibold" style="cursor: pointer;">Minimal Chat</span>
+      </a>
+      <div *ngFor="let user of Users" class="list-group list-group-flush border-bottom scrollarea">
+          <!-- active -->
+          <a class="list-group-item list-group-item-action  py-3 lh-tight" aria-current="true" [routerLink]="'user/' + user.userId">
+              <div class="d-flex w-100 align-items-center">
+                  <div class="profile">
+                      <div class="user-image">
+                        <span>{{ user.name.charAt(0) }}</span>
+                      </div>
+                      </div>
+                      <div class="row">
+                  <strong class="mb-1">{{user.name}}</strong>
+                  
+                  <small>{{user.email}}</small>
+                </div>
+              </div>
+          </a>
+
+      </div>
+  </div>
+</div>
+
+<div *ngIf="showWelcomeUI" class="welcome-container">
+  <div style="text-align: center;">
+  <img src="../../../assets/app-logo.svg" alt="MinimalChat" class="app-logo">
+  <h1 class="app-title">Minimal Chat: Streamlined Communication for Effortless Connections</h1>
+  <p class="app-subtitle">Simplify Your Conversations with Minimal Chat's Intuitive Messaging Platform</p>
+</div>
+</div>
+<div>
+  <!-- <app-conversation-history ></app-conversation-history> -->
+  <router-outlet></router-outlet>
+</div>
